@@ -1,0 +1,21 @@
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: trace
+        orm:
+          jdbc:
+            bind: trace
+spring:
+  flyway:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/postgres
+    user: postgres
+    password: Secure123!
+    locations: classpath:db/migration
+  datasource:
+    url: jdbc:postgresql://localhost:5433/postgres
+    username: postgres
+    password: Secure123!
+    driver-class-name: org.postgresql.Driver
