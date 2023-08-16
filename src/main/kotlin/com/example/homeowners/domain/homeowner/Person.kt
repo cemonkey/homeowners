@@ -1,6 +1,7 @@
 package com.example.homeowners.domain.homeowner
 
 import com.example.homeowners.domain.AbstractEntity
+import com.example.homeowners.domain.Auditable
 import jakarta.persistence.*
 
 @Entity(name = "person")
@@ -11,6 +12,9 @@ data class Person(
 
   @Column(name = "surname", nullable = false, insertable = true, updatable = true)
   var surname: String,
+
+  @Embedded
+  var auditable: Auditable = Auditable()
 ) : AbstractEntity() {
 
   @Suppress("SetterBackingFieldAssignment")

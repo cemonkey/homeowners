@@ -24,16 +24,7 @@ abstract class AbstractEntity(
   @Column(length = 36, unique = true, nullable = false)
   var id: String = UUID.randomUUID().toString(),
 
-  @Column(name = "created", nullable = false, insertable = true, updatable = false)
-  @Temporal(TemporalType.TIMESTAMP)
-  @CreatedDate
-  var created: Date = Date(),
-
-  @Column(name = "last_updated", nullable = false, insertable = true, updatable = true)
-  @Temporal(TemporalType.TIMESTAMP)
-  @LastModifiedDate
-  var lastUpdated: Date = Date(),
-
+  // JPA does not let @Version fields into embeddable classes, so it's here :(
   @Version
   @Column(name = "version", nullable = false, insertable = true, updatable = true)
   private val version: Int? = null
