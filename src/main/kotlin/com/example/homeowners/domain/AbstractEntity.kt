@@ -36,5 +36,5 @@ abstract class AbstractEntity(
 
   @Version
   @Column(name = "version", nullable = false, insertable = true, updatable = true)
-  val version: Int? = null
+  private val version: Int? = null
 )
