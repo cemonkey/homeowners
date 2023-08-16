@@ -31,5 +31,5 @@ abstract class AbstractEntity(
   var lastUpdated: Date = Date(),
 
   @Version
-  var version: Int? = null
+  private var version: Int? = null
 )
