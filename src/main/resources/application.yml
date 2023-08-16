@@ -7,6 +7,9 @@ logging:
         orm:
           jdbc:
             bind: trace
+      springframework:
+        jdbc:
+          core: trace
 spring:
   flyway:
     driver-class-name: org.postgresql.Driver

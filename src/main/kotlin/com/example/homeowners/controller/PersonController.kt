@@ -10,6 +10,7 @@ import com.example.homeowners.dto.GetPersonDto
 import com.example.homeowners.dto.PutHousesForPersonDto
 import com.example.homeowners.repository.PersonRepository
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping("/persons")
@@ -73,7 +74,6 @@ class PersonController(
     // Set the houses to the new values
     person.houses = body.houses.map {
       House(
-        person = null,
         streetAddress = it.streetAddress,
         suburb = it.suburb,
         postcode = it.postcode

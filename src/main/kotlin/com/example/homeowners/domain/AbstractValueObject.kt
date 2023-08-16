@@ -1,10 +1,9 @@
 package com.example.homeowners.domain
 
-import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedDate
-import org.springframework.data.domain.Persistable
+import org.springframework.data.annotation.Id
+import org.springframework.data.annotation.PersistenceCreator
 import java.util.*
-import kotlin.jvm.Transient
 
 /**
  * Abstract base class that represents a *Value Object* in Domain Driven Design (DDD).
@@ -30,14 +29,16 @@ import kotlin.jvm.Transient
  * always linked (and persisted) via a parent Entity.
  *
  */
-@MappedSuperclass
 abstract class AbstractValueObject(
   @Id
-  @Column(length = 36, unique = true, nullable = false)
   private var id: String = UUID.randomUUID().toString(),
 
-  @Column(name = "created", nullable = false, insertable = true, updatable = false)
-  @Temporal(TemporalType.TIMESTAMP)
+  // We unfortunately have to make every field in this class a var as Spring-data-jdbc uses the setter to set this value when retrieving from the database
+  // There are two alternatives:
+  // 1. We make a flat data class and have no inheritance for Value Objects. Every data class must explicitly define the id and created fields
+  //    This means more boilerplate in every value object we make
+  // 2. We make this a val, but provide a secondary constructor in the derived class and use @PersistenceCreator to tell Spring-data-jdbc to use constructor based instantiation.
+  //    This means an extra constructor in every class, and every field must be available in the primary constructor :(
   @CreatedDate
-  val created: Date = Date(),
+  var created: Date = Date()
 )
