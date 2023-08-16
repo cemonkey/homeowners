@@ -23,8 +23,11 @@ import kotlin.jvm.Transient
  *
  * 1. The implementation contains an immutable *created* field to tell when the entity was created.
  * 2. This implementation does not contain a *lastUpdated* field.
- * 3. This implementation uses a *version* field to tell if the value object has been persisted. The optimistic locking support is a redundant side effect.
- * We do not implement Persistable here as that requires a public id on the object.
+ * 3. This implementation does not implement *Persistable* as the persistence framework never needs
+ * to tell if the object is new because Value Objects are always linked (and persisted) via a parent Entity.
+ * 4. This implementation contains no *version* field as it is never updated via optimistic locking,
+ * and the persistence framework never needs to tell if the object is new because Value Objects are
+ * always linked (and persisted) via a parent Entity.
  *
  */
 @MappedSuperclass
@@ -37,8 +40,4 @@ abstract class AbstractValueObject(
   @Temporal(TemporalType.TIMESTAMP)
   @CreatedDate
   val created: Date = Date(),
-
-  @Version
-  @Column(name = "version", nullable = false, insertable = true, updatable = true)
-  var version: Int? = null
 )

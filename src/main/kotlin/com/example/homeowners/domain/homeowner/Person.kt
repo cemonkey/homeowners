@@ -2,15 +2,14 @@ package com.example.homeowners.domain.homeowner
 
 import com.example.homeowners.domain.AbstractEntity
 import jakarta.persistence.*
-import kotlin.jvm.Transient
 
 @Entity(name = "person")
 @Table(name = "person")
 data class Person(
-  @Column(name = "first_name", nullable = false, insertable = false, updatable = false)
+  @Column(name = "first_name", nullable = false, insertable = true, updatable = true)
   var firstName: String,
 
-  @Column(name = "surname", nullable = false, insertable = false, updatable = false)
+  @Column(name = "surname", nullable = false, insertable = true, updatable = true)
   var surname: String,
 ) : AbstractEntity() {
 

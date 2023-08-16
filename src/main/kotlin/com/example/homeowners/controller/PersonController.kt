@@ -3,6 +3,8 @@ package com.example.homeowners.controller
 import com.example.homeowners.converter.HouseConverter
 import com.example.homeowners.converter.PersonConverter
 import com.example.homeowners.domain.homeowner.House
+import com.example.homeowners.domain.homeowner.Person
+import com.example.homeowners.dto.CreatePersonDto
 import com.example.homeowners.dto.GetHousesForPersonDto
 import com.example.homeowners.dto.GetPersonDto
 import com.example.homeowners.dto.PutHousesForPersonDto
@@ -21,6 +23,18 @@ class PersonController(
     return personRepository.findAll()
       .map { personConverter.toGetPersonDto(it) }
       .toList();
+  }
+
+  @PostMapping
+  fun createPerson(
+    @RequestBody body: CreatePersonDto
+  ): GetPersonDto {
+    val person = Person(
+      firstName = body.firstName,
+      surname = body.surname
+    )
+    val savedPerson = personRepository.save(person)
+    return personConverter.toGetPersonDto(savedPerson)
   }
 
   @GetMapping("/{personId}")

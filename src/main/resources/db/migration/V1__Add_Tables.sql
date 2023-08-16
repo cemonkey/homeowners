@@ -21,6 +21,5 @@ create table house
   person_id      text                    not null
     constraint house_person_id_fk
       references person,
-  created        timestamp               not null,
-  version        integer                 not null
+  created        timestamp               not null
 );
