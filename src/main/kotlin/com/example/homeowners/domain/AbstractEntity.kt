@@ -24,12 +24,14 @@ abstract class AbstractEntity(
   @Id
   var id: String = UUID.randomUUID().toString(),
 
-  @CreatedDate
-  var created: Date = Date(),
-
   @LastModifiedDate
   var lastUpdated: Date = Date(),
 
   @Version
   private var version: Int? = null
-)
+) {
+  @CreatedDate
+  var created: Date = Date()
+    private set
+
+}

@@ -32,7 +32,7 @@ import java.util.*
 abstract class AbstractValueObject(
   @Id
   private var id: String = UUID.randomUUID().toString(),
-
+) {
   // We unfortunately have to make every field in this class a var as Spring-data-jdbc uses the setter to set this value when retrieving from the database
   // There are two alternatives:
   // 1. We make a flat data class and have no inheritance for Value Objects. Every data class must explicitly define the id and created fields
@@ -41,4 +41,5 @@ abstract class AbstractValueObject(
   //    This means an extra constructor in every class, and every field must be available in the primary constructor :(
   @CreatedDate
   var created: Date = Date()
-)
+    private set
+}
