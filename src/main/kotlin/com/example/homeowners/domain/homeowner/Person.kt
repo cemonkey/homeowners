@@ -14,7 +14,10 @@ data class Person(
 ) : AbstractEntity() {
 
   @Suppress("SetterBackingFieldAssignment")
-  @OneToMany(mappedBy = "person", cascade = [CascadeType.ALL], orphanRemoval = true)
+  // We cascade all operations to ensure JPA keeps the child in sync with the parent in the datebase
+  // The actual operations that need a cascade are: CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE
+  // We enable orphan removal so that JPA removes detached children from the database
+  @OneToMany(mappedBy = "person", cascade = [CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE], orphanRemoval = true)
   var houses: MutableList<House> = mutableListOf()
     set(value) {
       // Sever the child's link to the parent
