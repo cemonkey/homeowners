@@ -4,11 +4,9 @@ import com.example.homeowners.converter.HouseConverter
 import com.example.homeowners.converter.PersonConverter
 import com.example.homeowners.domain.homeowner.House
 import com.example.homeowners.domain.homeowner.Person
-import com.example.homeowners.dto.CreatePersonDto
-import com.example.homeowners.dto.GetHousesForPersonDto
-import com.example.homeowners.dto.GetPersonDto
-import com.example.homeowners.dto.PutHousesForPersonDto
+import com.example.homeowners.dto.*
 import com.example.homeowners.repository.PersonRepository
+import org.springframework.cache.CacheManager
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -34,6 +32,24 @@ class PersonController(
       firstName = body.firstName,
       surname = body.surname
     )
+    val savedPerson = personRepository.save(person)
+    return personConverter.toGetPersonDto(savedPerson)
+  }
+
+  @PutMapping("/{personId}")
+  fun updatePerson(
+    @PathVariable("personId")
+    personId: String,
+
+    @RequestBody body: UpdatePersonDto
+  ): GetPersonDto {
+
+    val person = personRepository.findById(personId)
+      .orElseThrow()
+
+    person.firstName = body.firstName
+    person.surname = body.surname
+
     val savedPerson = personRepository.save(person)
     return personConverter.toGetPersonDto(savedPerson)
   }

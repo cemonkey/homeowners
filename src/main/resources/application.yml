@@ -10,6 +10,7 @@ logging:
       springframework:
         jdbc:
           core: trace
+        cache: trace
 spring:
   flyway:
     driver-class-name: org.postgresql.Driver

@@ -11,35 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/persons",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"persons"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update houses for person",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"houses\": [\n        {\n            \"street_address\": \"123 Test Street\",\n            \"suburb\": \"Bayview\",\n            \"postcode\": \"0612\"\n        }\n    ]    \n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/persons/{{personId}}/houses",
+					"raw": "http://localhost:8080/persons/a8c335ca-4715-490c-8e73-5bc25bff541b",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -47,27 +19,17 @@
 					"port": "8080",
 					"path": [
 						"persons",
-						"{{personId}}",
-						"houses"
+						"a8c335ca-4715-490c-8e73-5bc25bff541b"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Create person",
+			"name": "Get a person",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"first_name\": \"Joe\",\n    \"surname\": \"Bloggs\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "http://localhost:8080/persons",
 					"protocol": "http",
@@ -84,6 +46,65 @@
 		},
 		{
 			"name": "Update person",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"first_name\": \"Chris\",\n   \"surname\": \"Evans\"   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons/a8c335ca-4715-490c-8e73-5bc25bff541b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons",
+						"a8c335ca-4715-490c-8e73-5bc25bff541b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update houses",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"houses\": [\n        {\n            \"street_address\": \"123 Test Street\",\n            \"suburb\": \"Bayview\",\n            \"postcode\": \"0612\"\n        }\n    ]    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons/a8c335ca-4715-490c-8e73-5bc25bff541b/houses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons",
+						"a8c335ca-4715-490c-8e73-5bc25bff541b",
+						"houses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create person",
 			"request": {
 				"method": "POST",
 				"header": [],
